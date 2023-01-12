@@ -173,13 +173,15 @@ public class ConfirmOrderFragment extends Fragment {
 
         date = parseDate(hour + ":" + minute);
         dateCompareOne = parseDate(date_string);
-        if ( date.before( dateCompareOne ) ) {
+        String[] time = date_string.split(":");
+
+        if ( hour < Integer.parseInt(time[0]) || ((hour == Integer.parseInt(time[0])) && minute< Integer.parseInt(time[1])) ) {
             return true;
         }
         return false;
 
     }
-    public static final String inputFormat = "HH:mm 'Uhr'";
+    public static final String inputFormat = "HH:mm ";
     public static Date parseDate(String date) {
 
         SimpleDateFormat inputParser = new SimpleDateFormat(inputFormat, Locale.US);
